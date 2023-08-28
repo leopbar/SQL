@@ -1,0 +1,25 @@
+-- Create a Clothing store database
+CREATE TABLE clothing (id integer primary key, type text, color text, size text, quantitaty integer);
+
+INSERT INTO clothing VALUES
+(1,"t-SHIRT","blue","Medium",23),
+(2,"short","black","Small",10),
+(3,"socks","white","35",20),
+(4,"skirt","white","Medium",23),
+(5,"dress","red","Large",15),
+(6,"top","pink","Medium",10),
+(7,"shoes","black","35",5),
+(8,"hat","black","large",1),
+(9,"pants","jeans","large",20),
+(10,"underwear","white","small",30),
+(11,"glass","no color","no size",3),
+(12,"jewlerys","gold","no size",2),
+(13,"belt","brown","small",15);
+
+-- display the items from store order by quantitaty
+select * from clothing
+order by quantitaty;
+
+-- display the quantitaty by type and order by quanitaty
+select type, sum(quantitaty) from clothing
+group by type order by quantitaty;
