@@ -1,0 +1,70 @@
+-- "This project shows us a list of famous people who work together in a specific movie. These are fictional listings due to the rights of the authors."
+
+-- Creation of the table 'Famous People' for actors and actresses who work in fictional Hollywood movies.
+
+CREATE TABLE FamousPeople (
+    ID integer PRIMARY KEY AUTOINCREMENT,
+    Name text,
+    Age integer
+);
+
+INSERT INTO FamousPeople (Name, Age) VALUES
+    ('Brad Johnson', 40),
+    ('Jennifer Parker', 36),
+    ('Tom Williams', 32),
+    ('Emily Adams', 28),
+    ('Chris Roberts', 45),
+    ('Emma Scott', 31),
+    ('Michael Turner', 38),
+    ('Olivia Mitchell', 29),
+    ('Samuel Davis', 42),
+    ('Sophia Reed', 27),
+    ('Jason White', 37),
+    ('Natalie King', 34),
+    ('Robert Lee', 39),
+    ('Jessica Collins', 33),
+    ('William Baker', 41);
+    
+-- Creating a Table for Fictional Movies
+CREATE TABLE Movies (
+    ID integer PRIMARY KEY AUToINCREMENT,
+    Title text,
+    ReleaseDate text,
+    ActorID integer
+);
+
+INSERT INTO Movies (Title, ReleaseDate, ActorID) VALUES
+    ('The Enigmatic Affair', '2023-01-15', 1),
+    ('Twilight Echoes', '2022-05-20', 2),
+    ('Crimson Horizon', '2021-11-10', 3),
+    ('Forgotten Dreams', '2023-03-08', 4),
+    ('Whispers in the Wind', '2022-09-05', 5);
+    
+-- "Creating a table that shows actors or actresses who work together in any movies from the 'Movies' table."
+CREATE TABLE Connections (
+    Actor1ID integer,
+    Actor2ID integer,
+    MovieID integer
+);
+
+INSERT INTO Connections (Actor1ID, Actor2ID, MovieID) VALUES
+    (1, 2, 1),
+    (2, 3, 2),
+    (3, 4, 3),
+    (4, 5, 3),
+    (5, 6, 4),
+    (6, 7, 5),
+    (7, 8, 2),
+    (8, 9, 4),
+    (9, 10, 5),
+    (10, 11, 5);
+
+-- This SELECT statement shows the names of actors or actresses who worked together and the movies they were in.
+select a.name as Actor1, b.name as Actor2, Movies.Title as Movies_Work_Together
+from Connections
+join FamousPeople a
+ON a.id = Connections.Actor1ID
+join FamousPeople b
+ON b.id = Connections.Actor2ID
+join Movies
+on Connections.MovieID = Movies.ID
