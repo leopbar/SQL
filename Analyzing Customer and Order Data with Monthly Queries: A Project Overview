@@ -1,3 +1,5 @@
+--This is a project with queries that retrieve some questions about orders and customers in tables with monthly orders.
+
 --1. How many orders were placed in January?  
 
 select count(*) from JanSales
